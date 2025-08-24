@@ -2,7 +2,7 @@ import os
 import sys
 
 try:
-	import ttkbootstrap as ttkb
+	import ttkbootstrap as ttkb  # type: ignore[import-not-found]
 	except_import = None
 except Exception as e:  # Fallback when ttkbootstrap is unavailable
 	except_import = e

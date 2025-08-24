@@ -4,7 +4,7 @@ from tkinter import ttk, messagebox
 from typing import Optional
 
 try:
-	import ttkbootstrap as ttkb
+	import ttkbootstrap as ttkb  # type: ignore[import-not-found]
 except Exception:
 	ttkb = None
 

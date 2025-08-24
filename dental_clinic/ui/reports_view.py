@@ -11,17 +11,27 @@ class ReportsView(ttk.Frame):
 		super().__init__(parent)
 		self.patient_service = patient_service
 		self.treatment_service = treatment_service
+		self._icons = None
 		self._build_ui()
+
+	def set_icons(self, icons: dict) -> None:
+		self._icons = icons
+		try:
+			self.refresh_btn.configure(image=self._icons.get("search"), compound=tk.LEFT)
+			self.backup_btn.configure(image=self._icons.get("backup"), compound=tk.LEFT)
+			self.restore_btn.configure(image=self._icons.get("restore"), compound=tk.LEFT)
+		except Exception:
+			pass
 
 	def _build_ui(self) -> None:
 		top = ttk.Frame(self)
 		top.pack(fill=tk.X, padx=8, pady=8)
-		refresh_btn = ttk.Button(top, text="Refresh", command=self._render)
-		refresh_btn.pack(side=tk.RIGHT, padx=4)
-		backup_btn = ttk.Button(top, text="Backup DB", command=self._on_backup)
-		restore_btn = ttk.Button(top, text="Restore DB", command=self._on_restore)
-		backup_btn.pack(side=tk.RIGHT, padx=4)
-		restore_btn.pack(side=tk.RIGHT, padx=4)
+		self.refresh_btn = ttk.Button(top, text="Refresh", command=self._render)
+		self.refresh_btn.pack(side=tk.RIGHT, padx=4)
+		self.backup_btn = ttk.Button(top, text="Backup DB", command=self._on_backup)
+		self.restore_btn = ttk.Button(top, text="Restore DB", command=self._on_restore)
+		self.backup_btn.pack(side=tk.RIGHT, padx=4)
+		self.restore_btn.pack(side=tk.RIGHT, padx=4)
 
 		self.canvas_container = ttk.Frame(self)
 		self.canvas_container.pack(fill=tk.BOTH, expand=True)

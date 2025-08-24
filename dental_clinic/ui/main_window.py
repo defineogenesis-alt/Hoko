@@ -18,6 +18,7 @@ from ui.patients_view import PatientsView
 from ui.appointments_view import AppointmentsView
 from ui.treatments_view import TreatmentsView
 from ui.reports_view import ReportsView
+from ui.icon_loader import load_icons
 
 
 class DentalClinicApp(tk.Tk):
@@ -47,18 +48,32 @@ class DentalClinicApp(tk.Tk):
 		navbar = ttk.Frame(self)
 		navbar.pack(side=tk.TOP, fill=tk.X)
 
+		# Load icons once and keep references
+		self.icons = load_icons(self, size=18)
+
 		self.quick_search_var = tk.StringVar()
 		quick_search = ttk.Entry(navbar, textvariable=self.quick_search_var)
 		quick_search.pack(side=tk.LEFT, padx=8, pady=8)
-		quick_btn = ttk.Button(navbar, text="Search", command=self._on_quick_search)
+		quick_btn = ttk.Button(navbar, text="Search", image=self.icons.get("search"), compound=tk.LEFT, command=self._on_quick_search)
 		quick_btn.pack(side=tk.LEFT, padx=(0, 8))
 
-		btn_patients = ttk.Button(navbar, text="Patients", command=lambda: self._show_view("patients"))
-		btn_appts = ttk.Button(navbar, text="Appointments", command=lambda: self._show_view("appointments"))
-		btn_treat = ttk.Button(navbar, text="Treatments", command=lambda: self._show_view("treatments"))
-		btn_reports = ttk.Button(navbar, text="Reports", command=lambda: self._show_view("reports"))
+		btn_patients = ttk.Button(navbar, text="Patients", image=self.icons.get("patients"), compound=tk.LEFT, command=lambda: self._show_view("patients"))
+		btn_appts = ttk.Button(navbar, text="Appointments", image=self.icons.get("appointments"), compound=tk.LEFT, command=lambda: self._show_view("appointments"))
+		btn_treat = ttk.Button(navbar, text="Treatments", image=self.icons.get("treatments"), compound=tk.LEFT, command=lambda: self._show_view("treatments"))
+		btn_reports = ttk.Button(navbar, text="Reports", image=self.icons.get("reports"), compound=tk.LEFT, command=lambda: self._show_view("reports"))
 		for b in (btn_patients, btn_appts, btn_treat, btn_reports):
 			b.pack(side=tk.LEFT, padx=4)
+
+		# Theme switcher (ttkbootstrap only)
+		if self._use_ttk:
+			try:
+				themes = sorted(set(self.style.theme_names()))
+				self.theme_var = tk.StringVar(value="cosmo")
+				theme_combo = ttk.Combobox(navbar, values=themes, textvariable=self.theme_var, width=14, state="readonly")
+				theme_combo.pack(side=tk.RIGHT, padx=8)
+				theme_combo.bind("<<ComboboxSelected>>", lambda e: self.style.theme_use(self.theme_var.get()))
+			except Exception:
+				pass
 
 		# Container for views
 		self.container = ttk.Frame(self)
@@ -72,6 +87,12 @@ class DentalClinicApp(tk.Tk):
 		}
 		for v in self.views.values():
 			v.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+		# Provide icons to reports view for button images
+		try:
+			getattr(self.views["reports"], "set_icons")(self.icons)
+		except Exception:
+			pass
 
 		self._show_view("patients")
 

@@ -8,17 +8,17 @@ try:
 except Exception:
 	ttkb = None
 
-from services.database import Database
-from services.patient_service import PatientService
-from services.appointment_service import AppointmentService
-from services.treatment_service import TreatmentService
-from services.invoice_service import InvoiceService
+from dental_clinic.services.database import Database
+from dental_clinic.services.patient_service import PatientService
+from dental_clinic.services.appointment_service import AppointmentService
+from dental_clinic.services.treatment_service import TreatmentService
+from dental_clinic.services.invoice_service import InvoiceService
 
-from ui.patients_view import PatientsView
-from ui.appointments_view import AppointmentsView
-from ui.treatments_view import TreatmentsView
-from ui.reports_view import ReportsView
-from ui.icon_loader import load_icons
+from dental_clinic.ui.patients_view import PatientsView
+from dental_clinic.ui.appointments_view import AppointmentsView
+from dental_clinic.ui.treatments_view import TreatmentsView
+from dental_clinic.ui.reports_view import ReportsView
+from dental_clinic.ui.icon_loader import load_icons
 
 
 class DentalClinicApp(tk.Tk):

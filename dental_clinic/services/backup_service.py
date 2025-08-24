@@ -1,6 +1,6 @@
 import shutil
 import os
-from services.database import Database
+from dental_clinic.services.database import Database
 
 
 def backup_database(db: Database, destination_path: str) -> str:

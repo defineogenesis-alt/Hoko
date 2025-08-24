@@ -2,8 +2,8 @@ from typing import List, Tuple
 from decimal import Decimal, ROUND_HALF_UP
 import os
 
-from services.database import Database
-from models import Invoice, InvoiceItem
+from dental_clinic.services.database import Database
+from dental_clinic.models import Invoice, InvoiceItem
 
 
 class InvoiceService:

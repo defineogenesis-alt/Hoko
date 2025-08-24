@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 
-from services.patient_service import PatientService
-from services.treatment_service import TreatmentService
-from services.backup_service import backup_database, restore_database
+from dental_clinic.services.patient_service import PatientService
+from dental_clinic.services.treatment_service import TreatmentService
+from dental_clinic.services.backup_service import backup_database, restore_database
 
 
 class ReportsView(ttk.Frame):

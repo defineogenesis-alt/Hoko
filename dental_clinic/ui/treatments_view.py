@@ -2,10 +2,10 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from typing import Optional
 
-from models import Treatment, Patient
-from services.patient_service import PatientService
-from services.treatment_service import TreatmentService
-from services.invoice_service import InvoiceService
+from dental_clinic.models import Treatment, Patient
+from dental_clinic.services.patient_service import PatientService
+from dental_clinic.services.treatment_service import TreatmentService
+from dental_clinic.services.invoice_service import InvoiceService
 
 
 class TreatmentsView(ttk.Frame):

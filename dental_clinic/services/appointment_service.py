@@ -1,7 +1,7 @@
 from typing import List, Optional, Tuple
 
-from services.database import Database
-from models import Appointment
+from dental_clinic.services.database import Database
+from dental_clinic.models import Appointment
 
 
 class AppointmentService:

@@ -11,8 +11,8 @@ except Exception as e:  # Fallback when ttkbootstrap is unavailable
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-from ui.main_window import DentalClinicApp
-from services.database import Database
+from dental_clinic.ui.main_window import DentalClinicApp
+from dental_clinic.services.database import Database
 
 
 def main() -> None:

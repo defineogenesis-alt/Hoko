@@ -2,9 +2,9 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from typing import Optional
 
-from models import Appointment, Patient
-from services.patient_service import PatientService
-from services.appointment_service import AppointmentService
+from dental_clinic.models import Appointment, Patient
+from dental_clinic.services.patient_service import PatientService
+from dental_clinic.services.appointment_service import AppointmentService
 
 
 class AppointmentsView(ttk.Frame):

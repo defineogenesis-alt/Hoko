@@ -1,8 +1,8 @@
 from typing import List, Optional
 from dataclasses import asdict
 
-from services.database import Database
-from models import Patient
+from dental_clinic.services.database import Database
+from dental_clinic.models import Patient
 
 
 class PatientService:
